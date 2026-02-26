@@ -1,0 +1,324 @@
+\documentclass[11pt, a4paper]{article}
+
+% ----- ESSENTIAL PACKAGES -----
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}       % For mathematical formulas
+\usepackage{amssymb}       % For mathematical symbols
+\usepackage{graphicx}      % For including images (plots)
+\usepackage{booktabs}      % For professional-looking tables
+\usepackage{siunitx}       % For alignment in tables (e.g., aligning decimals)
+\usepackage[margin=2.5cm]{geometry} % Custom margins
+\usepackage{caption}       
+\usepackage{subcaption}    
+\usepackage{longtable}     % For handling long tables
+\usepackage{tocloft} 
+
+\setlength{\cftbeforesecskip}{1.85ex} 
+\setlength{\cftbeforesubsecskip}{1.3ex}
+
+
+% -----------------------------------
+% BEGIN DOCUMENT
+% -----------------------------------
+\begin{document}
+
+\section{Study of Stylized Facts for Marriott’s Stock Returns}
+
+
+\subsection{Introduction}
+The following work has been completed based on the historical data of the stock of ``Marriott International, Inc.``, an international hotel group traded on the Nasdaq Stock Market (NMS). The sample characteristics are presented in the following table.
+
+\begin{figure}[ht]
+    \centering
+    \input{summary}
+    \caption{Data Sample Characteristics}
+    \label{fig:fig1}
+\end{figure}
+
+
+
+The logarithm returns have been calculated on a daily, monthly and annual basis, taking the logarithm prices. Then, statistical data were calculated to analyze the distribution of the series, the table below presents the results.
+
+\begin{figure}[ht]
+    \centering
+    \input{statistics}
+    \caption{Descriptive Statistics of Log-Returns}
+    \label{fig:Stats_log}
+\end{figure}
+
+\subsection{Study of the Stationary Returns}
+Based on the results, the data confirms the fact that returns are stationary, with a mean on daily analysis closed to zero ($0.04999$). The graphs below show that the returns oscillate around zero with periods of high variability. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Log_returns.png} % FIGURE 3: Time Series Plot of Returns
+    \caption{Time Series Plot of Log Returns}
+    \label{fig:fig3}
+\end{figure}
+
+A sharp negative movement appears in September 2001, corresponding to the September 11th attacks, which disrupted the global economy and severely affected the tourism sector. It is worth noting that this event generated only negative returns without a strong rebound, reflecting a sudden geopolitical shock rather than a financial one. In contrast, strong variations are also visible in October 2008 and Mars 2020, linked respectively to the global financial crisis and the COVID-19 pandemic. These crises show both negative and positive fluctuations, illustrating how financial and economic crises generate volatility but also allow partial recovery. The market thus reacted differently: no rebound followed the geopolitical crisis of 2001, whereas later crises involved both downturns and rebounds. Looking across different time horizons might bring different analyses. For instance, annual returns show that the 2008 crisis had more persistent effects, consistent with a prolonged financial downturn.
+
+\subsection{Study of the Symmetry and Tailedness}
+
+\begin{figure}[ht]
+    \centering
+    \input{sf3}
+    \caption{Returns' Distribution Parameters}
+    \label{fig:parameters}
+\end{figure}
+
+\subsubsection{Symmetry}
+The data shows negative skewness in the daily, monthly, and annual return distributions. It supports the third stylized fact, indicating that the distribution of returns is asymmetric. The skewness formula takes the cube of the return deviations, amplifying extreme deviations. Therefore, it means there is a higher probability of extreme negative returns than positive ones.
+
+\subsubsection{Tailedness}
+The distributions of daily and monthly returns for Marriott have positive excess kurtosis values of respectively 8.12 and 4.65. Therefore, the distributions are leptokurtic and characterized by heavy tails. This means that extreme return events occur more frequently than under a normal distribution. At the annual frequency, however, the distribution becomes approximately mesokurtic, suggesting that return extremes tend to smooth out over longer time horizons. The daily QQ-plot clearly illustrates this behavior, as the empirical quantiles deviate from the normal line at both extremes, confirming the presence of heavy tails.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{QQ-plot.png} % FIGURE 5: Daily QQ-plot
+    \caption{Daily QQ-plot Illustrating Heavy Tails}
+    \label{fig:fig5}
+\end{figure}
+
+Another point worth mentioning is that, for monthly returns, the mean is not lower than the median, as would typically be expected in a negatively skewed distribution. This can be explained by the fact that the distribution is not perfectly unimodal, as shown in Figure~\ref{fig:fig6}, which displays several distinct modes in the negative return region.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Kernel_density_monthly.png} % FIGURE 6: Monthly Returns Distribution (Histogram/Bar plot)
+    \caption{Monthly Returns Distribution (Unimodality Check)}
+    \label{fig:fig6}
+\end{figure}
+
+\subsection{Effect of Time Aggregation}
+The daily and monthly return distributions exhibit heavy tails and clear asymmetry, indicating a departure from normality. This asymmetry persists across all time horizons, including annual returns, although the degree of skewness varies with the aggregation frequency. By visually inspecting the distributions (see Figure~\ref{fig:fig7}), the monthly returns appear to be the closest to a Gaussian shape, despite still exhibiting some asymmetry and heavy tails.
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Kernel_density.png} % FIGURE 7: Statistical Tests on Normality across Frequencies
+    \caption{Comparison of Distribution Shape across Frequencies}
+    \label{fig:fig7}
+\end{figure}
+
+In order to address the shape of the distribution and assess the deviation from Gaussianity, a series of statistical tests have been employed in this section (see Figure~\ref{fig:stats}).
+
+\begin{figure}[ht]
+    \centering
+    \input{sf5}
+    \caption{Statistical Tests for Normality: Summary Results}
+    \label{fig:stats}
+\end{figure}
+
+\subsubsection{Jarque-Bera Test}
+First, the Jarque-Bera (JB) test focuses on comparing the observed skewness and kurtosis to the values expected under a Gaussian. For the daily and monthly returns, the JB statistics are respectively $17998$ and $290$, far above the critical value of $5.991$ from the $\chi^2$ distribution with 2 degrees of freedom. Their P-values are effectively zero, leading to a rejection of the null hypothesis and confirming that the daily and monthly returns are not normally distributed.  
+
+In contrast, the annual returns present a JB statistic of $2.3837$, which is below the critical value. The corresponding P-value of $0.3192$, higher than the significance level of $0.05$, indicates that the null hypothesis cannot be rejected. This suggests that the annual return distribution is roughly symmetric and mesokurtic; however, this alone is not sufficient to conclude normality.
+
+
+\subsubsection{Kolmogorov-Smirnov and Lilliefors tests}
+These tests are goodness of fit measures that check if the sample distribution is significantly different from the Gaussian. The KS test statistic remains high across all frequencies. The corresponding P-values are all highly significant (below $0.05$), leading to the rejection of the null hypothesis for all three frequencies. This indicates that the returns deviate significantly from a fully specified normal distribution across the entire sample space. Similarly, the Lilliefors test confirms non-normality for both daily and annual frequencies, in fact, the statistic and P-value lead to the rejection of the null hypothesis for both. The annual distribution, in particular, is rejected even at the strictest $1\%$ significance level (Figure~\ref{fig:fig9}). Conversely, the monthly distribution shows the weakest evidence against normality, with a Lilliefors statistic of $0.0511$ and a P-value of $0.0705$. Since this P-value exceeds the $5\%$ significance threshold, the null hypothesis of normality cannot be rejected.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{CDF.png} % FIGURE 9: Lilliefors Test/CDF Plot
+    \caption{Empirical CDF vs. Normal CDF (Lilliefors Test)}
+    \label{fig:fig9}
+\end{figure}
+
+
+The results of these tests provide partial evidence of Aggregational Gaussianity. As returns are aggregated from a daily to an annual frequency, the distribution tends to move closer to normality, although the effect varies depending on the test. For instance, the Jarque-Bera test indicates that the annual returns ($2.2837$) do not significantly deviate from normality, suggesting an improvement of symmetry and mesokurticity at this level. In contrast, the Kolmogorov-Smirnov and Lilliefors goodness-of-fit tests still reject the null hypothesis for the annual distribution, highlighting that it is not perfectly Gaussian. Interestingly, the monthly returns appear closest to normality according to the Lilliefors test, illustrating that different tests capture different aspects of the distribution. Overall, while aggregation mitigates skewness and extreme tails, full Gaussianity is not achieved across all frequencies.
+
+\subsection{Study of the Autocorrelation of the Returns}
+The analysis of the Autocorrelation Function (ACF) visually confirms that returns are not autocorrelated as the vast majority of autocorrelation bars are located in the acceptance region, inside the 95\% Bartlett's acceptance region (see Figure~\ref{fig:fig10}). 
+
+The Bartlett interval is given by $\pm 1.96 \times \frac{1}{\sqrt{n}}$ ,where $1.96$ takes the quantile $0.975$ of the normal distribution, giving a 95\% confidence interval. The interval is narrower for higher frequencies returns as the denominator ($\sqrt{n}$) is the square root of the number of observations, which is bigger for daily data explaining that some of the results aren located outside the acceptance region.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{autocorrolation.png} % FIGURE 10: ACF Plots (Daily, Monthly, Annual)
+    \caption{Autocorrelation Function (ACF) of Log-Returns}
+    \label{fig:fig10}
+\end{figure}
+
+The visual inspection of the Autocorrelation Function (ACF) plot typically shows that as the returns are aggregated from daily to monthly and annual frequencies, the estimated autocorrelation coefficients tend to enter well within the confidence bounds. This confirms the principle of Aggregational Non-Correlation: linear autocorrelation quickly dissipates as the time horizon lengthens. Furthermore, even at the daily frequency, the magnitude of the autocorrelation coefficients (ACF), such as $-0.006$ at lag $k=1$ and $-0.040$ at lag $k=5$ (see Figure~\ref{fig:ACF lag}), are extremely close to zero.
+
+To formally validate this lack of linear autocorrelation, the Ljung-Box (LB) and Box-Pierce (BP) tests were performed. To ensure a robust detection of persistent dependence over relevant market horizons, these tests were applied at specific lags: k=1 to check for immediate day-to-day dependency, k=5 to capture any structure across a full trading week, and k=10 to assess short-term dependency spanning two trading weeks. The degrees of freedom (df) for these tests are thus set equal to the number of lags, k.
+
+\begin{figure}[ht]
+    \centering
+    \input{my_table_lags}
+    \caption{ACF data for different lags}
+    \label{fig:ACF lag}
+\end{figure}
+
+The analysis of the Ljung-Box (L-B) and Box-Pierce (B-P) tests reveals an absence of immediate linear dependence. For lag $k=1$, the P-value of $0.601$ is well above the $0.05$ threshold, allowing us to not reject the null hypothesis of no autocorrelation. However, for lags $k=5$ (P-value $0.006$) and $k=10$ (P-value $0.010$), the P-value is below $0.05$, compelling a formal rejection of the null hypothesis. Despite this statistical rejection, the individual autocorrelation coefficients (ACF), such as $-0.040$ at $k=5$ and $0.003$ at $k=10$, are economically insignificant and fall largely within the standard confidence interval. 
+
+In summary, across all frequencies, the data strongly suggest the lack of significant linear autocorrelation. However, this only proves that returns are uncorrelated, and does not imply that they are independent. This crucial distinction where linear dependence is absent but non-linear dependence may persist is what motivates the subsequent study of volatility clustering.
+
+
+\subsection{Study of the Volatility Clustering and Long Range Dependence of Squared Returns}
+\subsubsection{Demonstration of volatility clustering}
+The Autocorrelation Function (ACF) of the squared log-returns ($r_t^2$) demonstrates that the magnitude of returns (volatility) is not random, but highly persistent and dependent over time.
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Squared_autocorrolation.png} % FIGURE 12: ACF of Squared Log-Returns
+    \caption{ACF of Squared Log-Returns, confirming Volatility Clustering}
+    \label{fig:fig12}
+\end{figure}
+
+The plots demonstrate that while raw returns are uncorrelated (Stylized Fact 6), squared returns exhibit positive and persistent correlation over time, especially for the daily frequency, where coefficients remain significantly above the confidence bands for many lags. This means that periods of high volatility are succeeded by further high volatility, and periods of calm persist. This phenomenon is known as the ARCH effect. 
+
+Furthermore, the graphs clearly show the property that as data is aggregated, the volatility autocorrelation decreases and decays faster. Moreover, the rolling volatility plot confirms the presence of volatility clustering (see Figure~\ref{fig:rolling_deviation}), as periods of high volatility often triggered by financial crises tend to persist over several months before returning to more stable, low volatility regimes. The use of a large rolling window of 252 trading days deliberately smooths short-term fluctuations, allowing the resulting volatility series to clearly reveal these persistent, long term patterns of market instability and calm.
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Standard_deviation.png} % FIGURE 12: Rolling Standard Deviation
+    \caption{Rolling standard deviation}
+    \label{fig:rolling_deviation}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \input{my_table_lags2}
+    \caption{ACF data for different lags (squared returns)}
+    \label{fig:ACF_lags}
+\end{figure}
+
+
+To formally validate the presence of conditional heteroskedasticity (ARCH effects) suggested by the ACF, the Box-Pierce and Ljung-Box test on squared returns were performed.
+The specific selection of lags was made to ensure a robust analysis of volatility persistence across multiple time horizons, to capture dependencies over a trading week ($k=5$), a trading month ($k=20$), and long-term memory ($k=100$).
+
+Based on the table, the P-values (B-P pval and L-B pval) are all $0.000$ for every lag, thereby forcing the rejection of the null hypothesis ($H_0$) and confirming the presence of the ARCH effect in the squared returns.
+
+\subsubsection{Hurst Exponent \& Validation of Long Memory}
+To quantify the long-term dependence in the volatility process, the Hurst Exponent ($H$) was calculated on the squared returns ($R_t^2$). The analysis yielded an exponent of $H = 0.853$. Since this value is significantly greater than $0.5$ ($H > 0.5$), it formally validates that the volatility series exhibits long-term dependence (or long memory). This high $H$ value demonstrates that volatility shocks persist over extended periods, confirming the persistent and non-random nature of the risk process, which is the core characteristic of volatility clustering.
+
+\subsection{Study of the Leverage Effect}
+The formal analysis of the Leverage Effect relies on the Cross-Correlation Function (CCF) between past returns ($r_{t-k}$) and current volatility, proxied by squared returns ($r_t^2$).
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Cross_correlation.png} % FIGURE 13: Cross-Correlation Function (CCF)
+    \caption{Cross-Correlation Function (CCF) - Leverage Effect}
+    \label{fig:CCF}
+\end{figure}
+
+This CCF shows a pronounced negative correlation for positive lags ($k > 0$), providing strong statistical evidence of the Leverage Effect. This confirms that negative returns tend to be followed by disproportionately larger increases in volatility compared to positive returns of similar magnitude. Correlations for negative lags ($k < 0$) are negligible, emphasizing the unidirectional nature of this effect: past volatility does not predict the sign of future returns.
+
+To complement the statistical analysis, the time series of daily returns ($r_t$) and rolling volatility is examined.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{MARvsSt.Dev.png} % FIGURE 13: Cross-Correlation Function (CCF)
+    \caption{Time series of Daily Returns and Rolling Volatility}
+    \label{fig:fig13}
+\end{figure}
+
+The graph shows that in stable periods (pre-2020), low absolute returns correspond to low, steady volatility. The graph depicts the situation during the COVID-19 pandemic to focus on a period of extremely negative returns. Crucially, the graph shows that large negative returns, such as those in early 2020, are immediately followed by a sharp, rapid spike in volatility, the signature of the Leverage Effect. This inverse relationship occurs because the return drop increases the firm's financial leverage, raising its perceived risk as suggested by the Black Leverage Hypothesis. Furthermore, the subsequent high-magnitude returns (both positive and negative) cluster together, creating a persistent high-volatility zones that lasts for several months, clearly demonstrating the Volatility Clustering phenomenon, studied previously.
+
+
+
+% ----------------------------------------------------------------------------------
+\section{Linear Factor Models: Estimation and Comparison}
+% ----------------------------------------------------------------------------------
+
+\subsection{Model Execution and Framework}
+
+This analysis estimates two foundational linear asset pricing models: the Capital Asset Pricing Model (CAPM) and the Fama and French Three-Factor Model (FF3M), using the monthly excess returns of Marriott International, Inc. All required factor data (Market excess return, SMB, and HML) were sourced from the Kenneth R. French Data Library. Although the S\&P 500 could have been used, the Mkt-Rf factor from this library is the preferred academic proxy, as it better approximates the CAPM's theoretical, broader value-weighted market portfolio.
+
+The CAPM is the single-factor model postulating that an asset's expected return is solely driven by its exposure to systematic market risk ($\beta_{Mkt}$), with any excess return captured by the intercept ($\alpha$). The FF3M extends the CAPM by including two additional factors: Size ($\text{SMB}$, Small Minus Big) and Value ($\text{HML}$, High Minus Low), aiming to provide a more comprehensive explanation of risk-adjusted returns. In both models, the market risk is measured using the Mkt-Rf factor, the academically preferred proxy for the CAPM's theoretical market portfolio.
+
+The models are defined by the following equations:
+\begin{equation}
+R_{i,t} - R_{f,t} = \alpha_i + \beta_{Mkt} (R_{M,t} - R_{f,t}) + \epsilon_{i,t} \quad \text{(CAPM)}
+\end{equation}
+
+\begin{equation}
+R_{i,t} - R_{f,t} = \alpha_i + \beta_{Mkt} (R_{M,t} - R_{f,t}) + \beta_{SMB} \text{SMB}_t + \beta_{HML} \text{HML}_t + \epsilon_{i,t} \quad \text{(FF3M)}
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{CAPM_MKT.png} % FIGURE 14: CAPM Regression Output (Coefficient Estimates)
+    \caption{Fitted Regression Line (CAPM)}
+    \label{fig:fig14}
+\end{figure}
+
+
+\subsection{Coefficient Estimation, Analysis, and Supplementary Tests}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Metric / Factor} & \textbf{CAPM (Single-Factor)} & \textbf{Fama-French (Three-Factor)} \\
+        \midrule
+        \textbf{R-squared ($R^2$)} & $0.460$ & $0.537$ \\
+        \textbf{Adjusted R-squared} & $0.458$ & $0.533$ \\
+        \midrule
+        \textbf{Alpha ($\alpha$)} & $0.4502$ (P-val: 0.225) & $0.3651$ (P-val: 0.289) \\
+        \midrule
+        \textbf{Market Beta ($\beta_{Mkt}$)} & $1.3081$ (P-val: 0.000) & $1.3227$ (P-val: 0.000) \\
+        \textbf{Size Factor ($\beta_{SMB}$)} & N/A & $0.0507$ (P-val: 0.644) \\
+        \textbf{Value Factor ($\beta_{HML}$)} & N/A & $0.7085$ (P-val: 0.000) \\
+        \bottomrule
+    \end{tabular}
+    \caption{Comparative Analysis of CAPM and Fama-French Three-Factor Model}
+    \label{tab:model_comparison}
+\end{table}
+
+
+The estimation results show that the FF3M provides a superior statistical fit compared to the CAPM. The $R^2$ increased from $0.460$ (CAPM) to $0.537$ (FF3M), demonstrating that the inclusion of the size and value factors explains an additional $7.7\%$ of Marriott's return variability. The $Adjusted\ R^2$ for the FF3M ($0.533$) shows a slightly greater drop relative to its raw $R^2$ ($0.537$) compared to the CAPM (from $0.460$ to $0.458$), due to the penalty imposed for adding two extra explanatory variables (SMB and HML) to the model.
+
+The Market Beta ($\beta_{Mkt}$) remained highly significant (P-value $0.000$) and stable across both models (CAPM $\beta_{Mkt}=1.3081$ vs. FF3M $\beta_{Mkt}=1.3227$), confirming Marriott as an aggressive stock that amplifies general market movements. It is worth noting that these Market Beta values are very close, regardless of whether additional factors are included. The $Alpha$ ($\alpha$) decreased slightly from $0.4502$ to $0.3651$ but remained statistically insignificant in both regressions (P-values $0.225$ and $0.289$, respectively). This failure to reject $\alpha=0$ is consistent with both the CAPM and the Arbitrage Pricing Theory (APT), which posit that in efficient markets, all abnormal risk-adjusted returns should be zero.
+Moreover, the Value factor ($\beta_{HML}=0.7085$) is highly significant, indicating a strong positive relationship with value stocks, while the Size factor ($\beta_{SMB}=0.0507$) is not statistically significant.
+
+This FF3M analysis significantly refines the stock's risk profile by showing that a portion of its returns not explained by the market is driven by the Value premium: the systematic tendency to earn higher returns during periods when value stocks (those with high book-to-market ratios) outperform growth stocks.
+
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Metric} & \textbf{CAPM} & \textbf{FF3M} \\
+        \midrule
+        \textbf{P-value ($\chi^2$)} & $7.09 \times 10^{-6}$ & $3.11 \times 10^{-9}$ \\
+        \textbf{F-Test P-value} & $4.96 \times 10^{-6}$ & $3.62 \times 10^{-10}$ \\
+        \midrule
+        \textbf{Conclusion} & \text{Reject} $H_0$  & \text{Reject} $H_0$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{White's Test for Heteroskedasticity}
+    \label{tab:white_test}
+\end{table}
+
+The White's Test indicated the presence of heteroskedasticity (P-value $\ll 0.05$) in the residuals, meaning the standard errors and P-values from
+
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Metric} & \textbf{CAPM ($res$)} & \textbf{CAPM ($res^2$)} & \textbf{FF3M ($res$)} & \textbf{FF3M ($res^2$)} \\
+        \midrule
+        \textbf{Mean} & $-0.000$ & $4163.264$ & $-0.000$ & $3569.307$ \\
+        \textbf{St.Dev.} & $645.234$ & $8447.568$ & $597.437$ & $6571.824$ \\
+        \textbf{JB Stat} & $76.370$ & $25734.344$ & $40.709$ & $15829.911$ \\
+        \textbf{JB P-value} & $0.000$ & $0.000$ & $0.000$ & $0.000$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Summary Statistics and Ljung-Box Test Results of CAPM and FF3M Residuals}
+    \label{tab:residual_summary}
+\end{table}
+
+The results of the Jarque-Bera test(JB) on both the raw and squared residuals confirm the model's instability: the P-values are zero ($0.000$) across all tests, indicating persistent non-normality and a strong failure to model the residual variance. This demonstrates that the residuals are not orthogonal (i.e., they are not independent white noise) and still contain a temporal dependence structure (ARCH/GARCH effects). This non-orthogonality necessitates the use of robust standard errors for the linear models and motivates the transition to models with conditional heteroskedastic variance. 
+
+% -----------------------------------
+% END OF DOCUMENT
+% -----------------------------------
+\end{document}
